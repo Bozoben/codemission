@@ -70,7 +70,7 @@ Pour faire cela, tu peux utiliser getElementById() . Modifie la fonction `clickG
 
 
 
-## Etape 4 : répartir les personnes au hasard
+## Etape 4 : répartir les personnes au hasard - préparatifs
 
 Crée une fonction `genererGroupes()` qui prendra deux paramètres (liste des personnes, nbre de groupes) et renverra les différents groupes (un autre tableau avec la liste des personnes !).
 
@@ -79,7 +79,8 @@ Exemple :
     function genererGroupes(personnes, nombreGroupes) {
         let lesGroupes = []
         // ...
-
+        lesGroupes.push("un, deux, trois")
+        lesGroupes.push("une autre liste, eh, oui")
         // ...
         return lesGroupes
     }
@@ -89,6 +90,10 @@ Exemple :
         consolse.log(genererGroupes(personnes, nombreGroupes))
     }
 ```
+> Pour faire simple, dis-toi que dans chaque élément de `lesgroupes`, tu auras une chaine de caractères avec les différentes personnes. Si on voulait faire moins simple, on pourrait envisager un tableau de tableau, on verra cela par la suite !
+
+
+## Etape 5 : le tirage au hasard !
 
 Tu as un tableau avec des personnes, un nombre de groupes souhaités ... Comment faire pour les répartir au hasard dans n groupes ? 
 
@@ -98,7 +103,7 @@ Mais... comment faire pour être sûr de remplir chaque groupe ?
 Une autre piste : trier d'abord les personnes au hasard, puis compter le nombre de personnes par groupe (division entière), puis créer les groupes (groupe 1 = les n premières personnes, groupe 2 = les n suivantes, ...).
 
 
-## Etape 5 : ultime étape, afficher les groupes
+## Etape 6 : ultime étape, afficher les groupes
 
 Pour l'instant tu ne crées pas de groupe, mais tu peux déjà ajouter un peu de code pour afficher quelque chose dans la page !
 Ajoute un `<div id="lesgroupes">` dans la page HTML.
