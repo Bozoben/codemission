@@ -7,8 +7,11 @@ Ta mission : fournir au boss une page Web dans laquelle il saisira les noms des 
 ## Un exemple de ce que tu dois obtenir
 
 Liste des personnes : Jean, Anne, Etienne, Lucie, Raphaël, Helmut, Rose, Linda.
+
 Nbre de groupes : 3
-Une proposition possible : 
+
+Une proposition possible :
+
 Groupe 1 = Jean, Anne, Lucie
 Groupe 2 = Etienne, Raphaël, Rose
 Groupe 3 = Helmut, Linda 
@@ -18,21 +21,22 @@ NB : dans ce cas, le dernier groupe n'a que deux personnes, parce qu'il n'y a pa
 ## Avant de démarrer : découvrir quelques notions utiles
 
 La fonction "Math.random" : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math/random pour générer un peu de "hasard".
-Dans la console Javascript, essaye d'utiliser Math.random() pour trier un nombre entre 1 et 10.
+Dans la console Javascript, essaye d'utiliser `Math.random()` pour tirer un nombre entre 1 et 10.
 
 Le type de données Arrays en javascript : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array
-Dans la console Javascript, essaye d'utiliser forEach() pour afficher les éléments d'un tableau, et sort() pour trier un tableau dans l'ordre alphabétique.
+Dans la console Javascript, essaye d'utiliser `forEach()` pour afficher les éléments d'un tableau, et `sort()` pour trier un tableau dans l'ordre alphabétique.
 
 Dans l'API "DOM" qui permet de manipuler une page HTML en Javascript, regarde https://developer.mozilla.org/fr/docs/Web/API/Document/getElementById
 
 
 ## Etape 1 : Crée une page
 Il te faut donc, dans cette page HTML : 
-* un champ "multi-ligne" pour saisir les personnes (`<TEXTAREA>`), avec un libellé (`<LABEL>`)
-* un champ "nombre" pour saisir le nombre de groupes, avec un libellé (`<LABEL>`)
+* un champ "multi-ligne"  (`<TEXTAREA id="...">`)pour saisir les personnes, avec un libellé (`<LABEL>`)
+* un champ "nombre" (`<input type="number" id=""...>`) pour saisir le nombre de groupes, avec un libellé (`<LABEL>`)
 * un bouton "Générer des groupes" (`<input type="button>">`)
 
 Dans un premier temps, ne te soucie pas de la mise en forme de la page !
+> Important : pense à donner un `ìd` à chaque champ, c'est ce qui permettra de le retrouver en javascript.
 
 ## Etape 2 : Prépare le javascript
 
@@ -50,7 +54,7 @@ Ajoute une fonction dans la partie `<head>` de la page :
 Pour associer un traitement au bouton, tu peux utiliser l'attribut `onclick` sur le bouton.
 
 ```
-    <input type="button" onclick="genererGroupes();return false">Générer des groupes</input>
+    <input type="button" onclick="clickGenererGroupes();return false">Générer des groupes</input>
 ```
 
 ## Etape 3 : récupérer la liste des personnes, et le nombre de groupes
@@ -63,7 +67,38 @@ Pour faire cela, tu peux utiliser getElementById() . Modifie la fonction `clickG
     console.log("Nombre de groupes : ", nombreGroupes)
 ```
 
-## Etape 4 : préparer l'affichage des groupes
+
+
+
+## Etape 4 : répartir les personnes au hasard
+
+Crée une fonction `genererGroupes()` qui prendra deux paramètres (liste des personnes, nbre de groupes) et renverra les différents groupes (un autre tableau avec la liste des personnes !).
+
+Exemple : 
+```
+    function genererGroupes(personnes, nombreGroupes) {
+        let lesGroupes = []
+        // ...
+
+        // ...
+        return lesGroupes
+    }
+
+    function clickGenererGroupes() {
+        ....
+        consolse.log(genererGroupes(personnes, nombreGroupes))
+    }
+```
+
+Tu as un tableau avec des personnes, un nombre de groupes souhaités ... Comment faire pour les répartir au hasard dans n groupes ? 
+
+Une piste : parcourir tout le tableau et affecter chaque personne à un des groupes en utilisant Math.random
+Mais... comment faire pour être sûr de remplir chaque groupe ?
+
+Une autre piste : trier d'abord les personnes au hasard, puis compter le nombre de personnes par groupe (division entière), puis créer les groupes (groupe 1 = les n premières personnes, groupe 2 = les n suivantes, ...).
+
+
+## Etape 5 : ultime étape, afficher les groupes
 
 Pour l'instant tu ne crées pas de groupe, mais tu peux déjà ajouter un peu de code pour afficher quelque chose dans la page !
 Ajoute un `<div id="lesgroupes">` dans la page HTML.
@@ -71,20 +106,10 @@ Ajoute un `<div id="lesgroupes">` dans la page HTML.
 Pour afficher quelque chose dans cette `div`, tu peux utiliser l'attribut `innerHTML``
 ```
     let maDiv = document.getElementById("lesgroupes")
+    // ... Là tu aurasl'appel à genererGroupes( ... )
+
     maDiv.innerHTML = "Heeeeeey c'est là qu'il y aura les groupes !!!"
 ```
-
-
-## Etape 4 : répartir les personnes au hasard
-
-
-Alors c'est là que le développement commence, n'est-ce pas ?
-Tu as un tableau avec des personnes, un nombre de groupes souhaités ... Comment faire pour les répartir au hasard dans n groupes ? 
-
-Une piste : parcourir tout le tableau et affecter chaque personne à un des groupes en utilisant Math.random
-Mais... comment faire pour être sûr de remplir chaque groupe ?
-
-Une autre piste : trier d'abord les personnes au hasard, puis compter le nombre de personnes par groupe (division entière), puis créer les groupes (groupe 1 = les n premières personnes, groupe 2 = les n suivantes, ...).
 
 
 
