@@ -105,7 +105,8 @@ Une autre piste : trier d'abord les personnes au hasard, puis compter le nombre 
 
 ## Etape 6 : ultime étape, afficher les groupes
 
-Pour l'instant tu ne crées pas de groupe, mais tu peux déjà ajouter un peu de code pour afficher quelque chose dans la page !
+Alors sinon, comment afficher les groupes dans la page ?
+
 Ajoute un `<div id="lesgroupes">` dans la page HTML.
 
 Pour afficher quelque chose dans cette `div`, tu peux utiliser l'attribut `innerHTML``
@@ -116,6 +117,26 @@ Pour afficher quelque chose dans cette `div`, tu peux utiliser l'attribut `inner
     maDiv.innerHTML = "Heeeeeey c'est là qu'il y aura les groupes !!!"
 ```
 
+## Plus loin : un tableau de tableau, vous dites ?
 
+On pourrait voir les groupes comme un tableau de tableau : 
 
+```
+let lesGroupes = [["jean","lucien","gertrude"],["mickey","minnie"],["elliot","max","gisèle"]]
+```
+Dans ce cas, si tu parcoures et affiche les éléments de 1er niveau (avec un `forEach`), tu obtiens un truc du genre : 
 
+```
+lesGroupes.forEach( element => console.log(element))
+    Array(3) [ "jean", "lucien", "gertrude" ]
+    Array [ "mickey", "minnie" ]
+    Array(3) [ "elliot", "max", "gisèle" ]
+```
+Comme chaque élément est lui-même un tableau, tu peux utiliser la méthode ```join```, qui joint tous les éléments d'un tableau pour rendre les choses plus lisibles :
+
+```
+lesGroupes.forEach( element => console.log(element.join(",")))
+    jean,lucien,gertrude
+    mickey,minnie
+    elliot,max,gisèle
+```
